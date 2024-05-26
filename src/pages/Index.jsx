@@ -1,14 +1,32 @@
-import { Box, Container, VStack, Text, Image, Flex, Heading, Link, SimpleGrid, Button } from "@chakra-ui/react";
+import { Box, Container, VStack, Text, Image, Flex, Heading, Link, SimpleGrid, Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { SearchIcon } from "@chakra-ui/icons";
+
+import { useState } from "react";
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
   return (
     <Box>
       {/* Navigation Bar */}
       <Box as="nav" bg="blue.800" color="white" py={4}>
         <Container maxW="container.xl" display="flex" justifyContent="space-between" alignItems="center">
           <Heading as="h1" size="lg">ElectroShop</Heading>
-          <Flex as="ul" listStyleType="none" m={0} p={0} gap={8}>
+          <InputGroup maxW="400px" ml={8}>
+            <Input
+              placeholder="Search for products..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              bg="white"
+              color="black"
+            />
+            <InputRightElement children={<SearchIcon color="gray.500" />} />
+          </InputGroup>
+          <Flex as="ul" listStyleType="none" m={0} p={0} gap={8} ml={8}>
             <Link as="li" href="#" _hover={{ textDecoration: "underline" }}>Home</Link>
             <Link as="li" href="#" _hover={{ textDecoration: "underline" }}>Products</Link>
             <Link as="li" href="#" _hover={{ textDecoration: "underline" }}>About Us</Link>
